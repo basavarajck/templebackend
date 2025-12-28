@@ -27,11 +27,13 @@ export const submitComplaint = async (req, res) => {
 };
 
 /* ---------------------------------------------
-   2️⃣ Get Complaints for a Villager (User-only)
+   2️⃣ Get All Complaints (Visible to Villagers)
 --------------------------------------------- */
 export const getMyComplaints = async (req, res) => {
   try {
-    const complaints = await Complaint.find({ createdBy: req.user.id }).sort({
+    // Return ALL complaints sorted by newest first
+    // User requested NOT to show who submitted, so we don't populate 'createdBy'
+    const complaints = await Complaint.find().sort({
       createdAt: -1,
     });
 

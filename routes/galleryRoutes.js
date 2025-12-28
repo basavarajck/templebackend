@@ -2,7 +2,7 @@ import express from "express";
 import {
   uploadMedia,
   getGallery,
-  disableMedia,
+  deleteMedia,
 } from "../controllers/galleryController.js";
 
 import authMiddleware from "../middleware/authMiddleware.js";
@@ -34,7 +34,8 @@ router.delete(
   "/:id",
   authMiddleware,
   permitRoles("committee", "admin"),
-  disableMedia
+  deleteMedia
+
 );
 
 export default router;
